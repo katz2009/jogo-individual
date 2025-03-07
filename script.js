@@ -129,7 +129,7 @@ const config = {
             debug: false
         }
     },
-    scene: [GameScene]
+    scene: [MenuScene, GameScene] // Adiciona MenuScene antes de GameScene
 };
 
 const game = new Phaser.Game(config);
