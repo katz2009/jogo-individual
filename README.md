@@ -6,6 +6,6 @@
 
 4. Link do código (GitHub Individual): (https://github.com/katz2009/jogo-individual/)
 
-5. Link da versão jogável (GitHub Pages): (insira aqui o link da versão jogável do seu Projeto Individual)
+5. Link da versão jogável (GitHub Pages): (https://katz2009.github.io/jogo-individual/)
 
 6. Dúvidas, dificuldades ou comentários?
