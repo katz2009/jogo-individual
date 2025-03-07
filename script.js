@@ -7,6 +7,7 @@ class GameScene extends Phaser.Scene {
         this.load.image('sapo', 'assets/sapo.png');  
         this.load.image('apple', 'assets/maca.png');  
         this.load.image('fundo', 'assets/fundo.jpg');
+        this.load.image('cogumelo', 'assets/cogumelo.png');
     }
 
     create() {
@@ -20,7 +21,6 @@ class GameScene extends Phaser.Scene {
         this.sapo = this.physics.add.image(400, 300, 'sapo')
             .setOrigin(0.5, 0.5)
             .setCollideWorldBounds(true);
-
         this.sapo.setScale(0.5);
 
         // Configurar colisão com borda
@@ -28,6 +28,11 @@ class GameScene extends Phaser.Scene {
         this.physics.world.on('worldbounds', () => {
             this.gameOver();
         });
+
+        // Criando o cogumelo (barreira)
+        this.cogumelo = this.physics.add.image(100, 500, 'cogumelo');
+        this.cogumelo.setScale(0.5);
+        this.cogumelo.setImmovable(true);
 
         // 🔥 **Recria os controles** para garantir que funcionem após restart
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -42,6 +47,9 @@ class GameScene extends Phaser.Scene {
 
         // Colisão entre o sapo e a maçã
         this.physics.add.overlap(this.sapo, this.apple, this.collectApple, null, this);
+
+        // Colisão entre o sapo e o cogumelo (não faz nada)
+        this.physics.add.collider(this.sapo, this.cogumelo);
     }
 
     update() {
@@ -77,7 +85,6 @@ class GameScene extends Phaser.Scene {
             this.sapo.setScale(newScale);
         }
     }
-    
 
     gameOver() {
         this.gameOverFlag = true;
@@ -122,7 +129,7 @@ const config = {
             debug: false
         }
     },
-    scene: [MenuScene, GameScene]
+    scene: [GameScene]
 };
 
 const game = new Phaser.Game(config);
